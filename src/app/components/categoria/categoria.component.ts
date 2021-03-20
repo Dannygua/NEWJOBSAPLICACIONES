@@ -22,6 +22,11 @@ export class CategoriaComponent implements OnInit {
     this.obtenerCategorias()
     this.myFormCategoria = new FormGroup({
       nombreF: new FormControl(''),
+      directorF: new FormControl(''),
+      imagenF: new FormControl(''),
+      actoresF: new FormControl(''),
+      anioF: new FormControl(''),
+      descripcionF: new FormControl(''),
 
     }
     );
@@ -30,8 +35,8 @@ export class CategoriaComponent implements OnInit {
   obtenerCategorias(){
         
   this.servc.getCategorias().subscribe((r)=>{ 
-    console.log(r.categorias)
-    this.categorias=r.categorias;
+    console.log(r)
+    this.categorias=r;
 
   }
 
@@ -42,11 +47,21 @@ export class CategoriaComponent implements OnInit {
 
 
     let nombre = this.myFormCategoria.value.nombreF;
-        
-    this.servc.addCategoria(nombre).subscribe((r) =>{
+    let director = this.myFormCategoria.value.directorF;
+    let imagen = this.myFormCategoria.value.imagenF;
+    let actores = this.myFormCategoria.value.actoresF;
+    let anio = this.myFormCategoria.value.anioF;
+    let descripcion = this.myFormCategoria.value.descripcionF;
+
+    this.servc.addCategoria(nombre,director,imagen,actores,anio,descripcion).subscribe((r) =>{
       this.obtenerCategorias()
       this.myFormCategoria = new FormGroup({
         nombreF: new FormControl(''),
+        directorF: new FormControl(''),
+        imagenF: new FormControl(''),
+        actoresF: new FormControl(''),
+        anioF: new FormControl(''),
+        descripcionF: new FormControl(''),
       });
 
     });
@@ -71,9 +86,15 @@ export class CategoriaComponent implements OnInit {
     editarCategoria(id:string){
 
 
-      let nombre = this.myFormCategoria.value.nombreF;
+     
+    let nombre = this.myFormCategoria.value.nombreF;
+    let director = this.myFormCategoria.value.directorF;
+    let imagen = this.myFormCategoria.value.imagenF;
+    let actores = this.myFormCategoria.value.actoresF;
+    let anio = this.myFormCategoria.value.anioF;
+    let descripcion = this.myFormCategoria.value.descripcionF;
           
-      this.servc.editCategoria(nombre, id).subscribe((r) =>{
+      this.servc.editCategoria(nombre,director,imagen,actores,anio,descripcion, id).subscribe((r) =>{
         this.obtenerCategorias();
 
       });

@@ -1,8 +1,9 @@
 export interface Anime {
-    categorias:
-    {
-        _id : string, 
-        nombre: string
-    },
-    conteo: number
+    idAnime : number, 
+    nombre: string
+    director: string,
+    imagen:string,
+    actores: string,
+    anio: string,
+    descripcion: string
 }

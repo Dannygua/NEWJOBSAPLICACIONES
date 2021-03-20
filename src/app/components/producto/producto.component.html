@@ -8,16 +8,55 @@
       <a *ngFor="let p of producto">
         <div >
           <div class="card mb-3">
-            <img src="https://as.com/meristation/imagenes/2020/11/11/noticias/1605088151_378581_1605088347_noticia_normal.jpg" class="card-img-top" alt="...">
+            <img src={{p.imagen}} class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{p.nombre}}</h5>
-              <p class="card-text">Año</p>
-              <p class="card-text">Genero</p>
-              <p class="card-text">Descripcion</p>
+
+                <p class="card-text">{{p.director}}</p>
+                <p class="card-text">{{p.actores}}</p>
+                <p class="card-text">{{p.anio}}</p>
+                <p class="card-text">{{p.descripcion}}</p>
+                <p class="card-text"><button type="submit" class="buttonDefault btn btn-primary btn-lg btn-block" (click)="eliminarProducto(p.idJuego)">ELIMINAR</button></p>
             </div>
           </div>
 
         </div>
+        <div class=" card-container ml-3">
+          <div class=" card ">
+            <h5 class="card-title  mt-3">EDITAR JUEGO</h5>
+          <form class="FormDefault row g-3" [formGroup]="myFormProducto" (ngSubmit)="editarProducto(p.idJuego)" >
+            <div class="form-group  col-md-6 " > 
+              <input type="text" class="form-control" id ="formGroupExampleInput" 
+              placeholder="{{p.nombre}}"  formControlName="nombreF" > 
+            </div>
+          <div class="form-group pr-5 col-md-6 " > 
+            <input type="text" class="form-control" id ="formGroupExampleInput" 
+            placeholder="{{p.director}}" formControlName="directorF" > 
+          </div>
+          <div class="form-group pt-4 col-md-12 " > 
+            <input type="text" class="form-control" id ="formGroupExampleInput" 
+            placeholder="{{p.imagen}}" formControlName="imagenF" > 
+          </div>
+          <div class="form-group pt-4 col-md-6" > 
+            <input type="text" class="form-control" id ="formGroupExampleInput" 
+            placeholder="{{p.actores}}" formControlName="actoresF" > 
+          </div>
+          <div class="form-group pt-4 col-md-6" > 
+            <input type="text" class="form-control" id ="formGroupExampleInput" 
+            placeholder="{{p.anio}}" formControlName="anioF" > 
+          </div><div class="form-group pt-4 col-md-12" > 
+            <textarea class="form-control" placeholder="{{p.descripcion}}" formControlName="descripcionF" id="floatingTextarea"></textarea>
+     
+          </div>
+          <br/>
+          <div class="col-12">
+            <button type="submit" class="buttonDefault btn btn-primary btn-lg btn-block" >EDITAR</button>
+          </div>
+          
+    
+        </form>
+      </div>
+      </div>
       
       </a>
 
@@ -29,27 +68,30 @@
     <div class=" card-container ml-3">
       <div class=" card ">
         <h5 class="card-title  mt-3">NUEVO VIDEOJUEGO</h5>
-      <form class="FormDefault row g-3" [formGroup]="myFormProducto" (ngSubmit)="ingresarProducto" >
-      <div class="form-group  col-md-6 " > 
-        <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Nombre" formControlName="nombreF" > 
-      </div>
-      <div class="form-group pr-5 col-md-6 " > 
-        <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Año" formControlName="nombreF" > 
-      </div>
-      <div class="form-group pt-4 col-md-12 " > 
-        <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Año" formControlName="nombreF" > 
-      </div>
-      <div class="form-group pt-4 col-md-6" > 
-        <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Año" formControlName="nombreF" > 
-      </div>
-      <div class="form-group pt-4 col-md-6" > 
-        <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Año" formControlName="nombreF" > 
-      </div>
+      <form class="FormDefault row g-3" [formGroup]="myFormProducto" (ngSubmit)="ingresarProducto()" >
+        <div class="form-group  col-md-6 " > 
+          <input type="text" class="form-control" id ="formGroupExampleInput" 
+          placeholder="Nombre" formControlName="nombreF" > 
+        </div>
+        <div class="form-group pr-5 col-md-6 " > 
+          <input type="text" class="form-control" id ="formGroupExampleInput" 
+          placeholder="Director" formControlName="directorF" > 
+        </div>
+        <div class="form-group pt-4 col-md-12 " > 
+          <input type="text" class="form-control" id ="formGroupExampleInput" 
+          placeholder="URL de la Imagen" formControlName="imagenF" > 
+        </div>
+        <div class="form-group pt-4 col-md-6" > 
+          <input type="text" class="form-control" id ="formGroupExampleInput" 
+          placeholder="Personajes" formControlName="actoresF" > 
+        </div>
+        <div class="form-group pt-4 col-md-6" > 
+          <input type="text" class="form-control" id ="formGroupExampleInput" 
+          placeholder="Año" formControlName="anioF" > 
+        </div><div class="form-group pt-4 col-md-12" > 
+          <textarea class="form-control" placeholder="Descripcion" formControlName="descripcionF" id="floatingTextarea"></textarea>
+   
+        </div>
 
       <br/>
       <div class="col-12">

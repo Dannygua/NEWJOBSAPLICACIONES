@@ -23,6 +23,11 @@ export class ProductoComponent implements OnInit {
     this.obtenerProducto()
     this.myFormProducto = new FormGroup({
       nombreF: new FormControl(''),
+      directorF: new FormControl(''),
+      imagenF: new FormControl(''),
+      actoresF: new FormControl(''),
+      anioF: new FormControl(''),
+      descripcionF: new FormControl(''),
 
     }
     );
@@ -31,8 +36,8 @@ export class ProductoComponent implements OnInit {
   obtenerProducto(){
         
   this.servc.getProducto().subscribe((r)=>{ 
-    console.log(r.productos)
-    this.producto=r.productos;
+    console.log(r)
+    this.producto=r;
 
   }
 
@@ -42,18 +47,54 @@ export class ProductoComponent implements OnInit {
   ingresarProducto(){
 
     let nombre = this.myFormProducto.value.nombreF;
-    let disponible = this.myFormProducto.value.disponibleF;
-    let precioUni = this.myFormProducto.value.precioUniF;
+    let director = this.myFormProducto.value.directorF;
+    let imagen = this.myFormProducto.value.imagenF;
+    let actores = this.myFormProducto.value.actoresF;
+    let anio = this.myFormProducto.value.anioF;
+    let descripcion = this.myFormProducto.value.descripcionF;
 
-    this.servc.addProducto(nombre).subscribe((r) =>{
+    this.servc.addProducto(nombre,director,imagen,actores,anio,descripcion).subscribe((r) =>{
       this.obtenerProducto()
       this.myFormProducto = new FormGroup({
         nombreF: new FormControl(''),
-        disponibleF: new FormControl(''),
-        precioUniF: new FormControl(''),
+        directorF: new FormControl(''),
+        imagenF: new FormControl(''),
+        actoresF: new FormControl(''),
+        anioF: new FormControl(''),
+        descripcionF: new FormControl(''),
       });
 
     });
     }
+    eliminarProducto(id:string){
+      if(
+        !confirm(
+          'se eleminara el articulo seleccionado, si desea proceder de clic en Aceptar caso contrario escoja la opcion Cancelar'
+        )
+      ){
+        return false;
 
+      }else{
+        this.servc.deleteProducto(id).subscribe((r)=>{
+          console.log('Datos eliminados');
+          this.obtenerProducto();
+        });
+        return true;
+      }
+    }
+    editarProducto(id:string){
+
+
+      let nombre = this.myFormProducto.value.nombreF;
+      let director = this.myFormProducto.value.directorF;
+      let imagen = this.myFormProducto.value.imagenF;
+      let actores = this.myFormProducto.value.actoresF;
+      let anio = this.myFormProducto.value.anioF;
+      let descripcion = this.myFormProducto.value.descripcionF;
+          
+      this.servc.editProducto(nombre,director,imagen,actores,anio,descripcion, id).subscribe((r) =>{
+        this.obtenerProducto();
+
+      });
+      }
 }

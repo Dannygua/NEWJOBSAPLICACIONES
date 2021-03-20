@@ -10,9 +10,9 @@ import { Anime } from './Anime';
 })
 export class ClientenodeService {
 
-  URL:string = "https://demonodemongodb.herokuapp.com/api/categoria/";
-  URLP:string = "https://demonodemongodb.herokuapp.com/api/producto/";
-  URLA:string = "https://demonodemongodb.herokuapp.com/api/categoria/";
+  URL:string = "https://distribuidas-308122.rj.r.appspot.com/peliculas/";
+  URLP:string = "https://distribuidas-308122.rj.r.appspot.com/juegos/";
+  URLA:string = "https://distribuidas-308122.rj.r.appspot.com/animes/";
   constructor(private httpc:HttpClient) {
   
 
@@ -20,81 +20,65 @@ export class ClientenodeService {
    getCategorias(): Observable<Categoria>{
      return this.httpc.get<Categoria>(this.URL);
    }
-
-   addCategoria(nombreF:string){
-     let objetoCategoria = {nombre: nombreF}
+   addCategoria(nombreF:string,directorF:string,imagenF:string,actoresF:string,anioF:string,descripcionF:string){
+     let objetoCategoria = {nombre: nombreF,director:directorF,imagen:imagenF,actores:actoresF,anio:anioF,descripcion:descripcionF }
 
      return this.httpc.post(this.URL,objetoCategoria);
    }
 
-
-   editCategoria(nombreF:string, idCategoria:string){
-    let obj = {nombre: nombreF}
+   editCategoria(nombreF:string,directorF:string,imagenF:string,actoresF:string,anioF:string,descripcionF:string, idCategoria:string){
+    let obj = {nombre: nombreF,director:directorF,imagen:imagenF,actores:actoresF,anio:anioF,descripcion:descripcionF }
 
     return this.httpc.put( `${this.URL}/${idCategoria}`,obj );
   }
 
   deleteCategoria( idCategoria:string){
-
     return this.httpc.delete( this.URL+idCategoria);
   }
    
-  getCategoriaById( idCategoria:string){
-
-    return this.httpc.get<Categoria>( this.URL+idCategoria);
-  }
   
      getProducto(): Observable<Producto>{
      return this.httpc.get<Producto>(this.URLP);
    }
 
-   addProducto(nombreF:string){
-     let objetoCategoria = {nombre: nombreF}
+   addProducto(nombreF:string,directorF:string,imagenF:string,actoresF:string,anioF:string,descripcionF:string){
+    let objetoCategoria = {nombre: nombreF,director:directorF,imagen:imagenF,actores:actoresF,anio:anioF,descripcion:descripcionF }
 
      return this.httpc.post(this.URLP,objetoCategoria);
    }
 
 
-   editProducto(nombreF:string, idCategoria:string){
-    let obj = {nombre: nombreF}
+   editProducto(nombreF:string,directorF:string,imagenF:string,actoresF:string,anioF:string,descripcionF:string, idCategoria:string){
+    let obj = {nombre: nombreF,director:directorF,imagen:imagenF,actores:actoresF,anio:anioF,descripcion:descripcionF }
 
     return this.httpc.put( `${this.URLP}/${idCategoria}`,obj );
   }
 
-  deleteProducto( idCategoria:string){
+  deleteProducto(idProducto:string){
 
-    return this.httpc.delete( this.URLP+idCategoria);
+    return this.httpc.delete( this.URLP+idProducto);
   }
    
-  getProductoById( idCategoria:string){
-
-    return this.httpc.get<Producto>( this.URLP+idCategoria);
-  }
-
   getAnime(): Observable<Anime>{
     return this.httpc.get<Anime>(this.URLA);
   }
 
-  addAnime(nombreF:string){
-    let objetoCategoria = {nombre: nombreF}
+  addAnime(nombreF:string,directorF:string,imagenF:string,actoresF:string,anioF:string,descripcionF:string){
+    let objetoCategoria = {nombre: nombreF,director:directorF,imagen:imagenF,actores:actoresF,anio:anioF,descripcion:descripcionF }
 
     return this.httpc.post(this.URLA,objetoCategoria);
   }
 
 
-  editAnime(nombreF:string, idCategoria:string){
-   let obj = {nombre: nombreF}
+  editAnime(nombreF:string,directorF:string,imagenF:string,actoresF:string,anioF:string,descripcionF:string, idCategoria:string){
+    let obj = {nombre: nombreF,director:directorF,imagen:imagenF,actores:actoresF,anio:anioF,descripcion:descripcionF }
 
    return this.httpc.put( `${this.URLA}/${idCategoria}`,obj );
  }
 
- deleteAnime( idCategoria:string){
+ deleteAnime( idAnime:string){
 
-   return this.httpc.delete( this.URLA+idCategoria);
+   return this.httpc.delete( this.URLA+idAnime);
  }
   
- getAnimeById( idCategoria:string){
-
-   return this.httpc.get<Anime>( this.URLA+idCategoria);
- }
 }

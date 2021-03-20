@@ -1,8 +1,10 @@
 export interface Categoria {
-    categorias:
-    {
-        _id : string, 
+ 
+        idPelicula : number, 
         nombre: string
-    },
-    conteo: number
+        director: string,
+        imagen:string,
+        actores: string,
+        anio: string,
+        descripcion:string
 }

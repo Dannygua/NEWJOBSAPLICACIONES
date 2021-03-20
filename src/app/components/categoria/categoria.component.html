@@ -8,23 +8,43 @@
       <a *ngFor="let c of categorias ">
         <div >
           <div class="card mb-3">
-            <img src="https://as.com/meristation/imagenes/2020/11/11/noticias/1605088151_378581_1605088347_noticia_normal.jpg" class="card-img-top" alt="...">
+            <img src={{c.imagen}} class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{c.nombre}}</h5>
 
-                <p class="card-text">Año</p>
-                <p class="card-text">Genero</p>
-                <p class="card-text">Descripcion</p>
-                <p class="card-text"><button type="submit" class="buttonDefault btn btn-primary btn-lg btn-block" (click)="eliminarCategoria(c._id)">ELIMINAR</button></p>
+                <p class="card-text">{{c.director}}</p>
+                <p class="card-text">{{c.actores}}</p>
+                <p class="card-text">{{c.anio}}</p>
+                <p class="card-text">{{c.descripcion}}</p>
+                <p class="card-text"><button type="submit" class="buttonDefault btn btn-primary btn-lg btn-block" (click)="eliminarCategoria(c.idPelicula)">ELIMINAR</button></p>
             </div>
             
             <div class=" card-container ml-3">
               <div class=" card ">
                 <h5 class="card-title  mt-3">EDITAR PELICULA</h5>
-              <form class="FormDefault row g-3" [formGroup]="myFormCategoria" (ngSubmit)="editarCategoria(c._id)" >
-              <div class="form-group " > 
-                <input type="text"  class="form-control" id ="formGroupExampleInput" 
-                placeholder="{{c.nombre}}" formControlName="nombreF" > 
+              <form class="FormDefault row g-3" [formGroup]="myFormCategoria" (ngSubmit)="editarCategoria(c.idPelicula)" >
+                <div class="form-group  col-md-6 " > 
+                  <input type="text" class="form-control" id ="formGroupExampleInput" 
+                  placeholder="{{c.nombre}}"  formControlName="nombreF" > 
+                </div>
+              <div class="form-group pr-5 col-md-6 " > 
+                <input type="text" class="form-control" id ="formGroupExampleInput" 
+                placeholder="{{c.director}}" formControlName="directorF" > 
+              </div>
+              <div class="form-group pt-4 col-md-12 " > 
+                <input type="text" class="form-control" id ="formGroupExampleInput" 
+                placeholder="{{c.imagen}}" formControlName="imagenF" > 
+              </div>
+              <div class="form-group pt-4 col-md-6" > 
+                <input type="text" class="form-control" id ="formGroupExampleInput" 
+                placeholder="{{c.actores}}" formControlName="actoresF" > 
+              </div>
+              <div class="form-group pt-4 col-md-6" > 
+                <input type="text" class="form-control" id ="formGroupExampleInput" 
+                placeholder="{{c.anio}}" formControlName="anioF" > 
+              </div><div class="form-group pt-4 col-md-12" > 
+                <textarea class="form-control" placeholder="{{c.descripcion}}" formControlName="descripcionF" id="floatingTextarea"></textarea>
+         
               </div>
               <br/>
               <div class="col-12">
@@ -55,19 +75,22 @@
       </div>
       <div class="form-group pr-5 col-md-6 " > 
         <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Año" formControlName="nombreF" > 
+        placeholder="Director" formControlName="directorF" > 
       </div>
       <div class="form-group pt-4 col-md-12 " > 
         <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Año" formControlName="nombreF" > 
+        placeholder="URL de la Imagen" formControlName="imagenF" > 
       </div>
       <div class="form-group pt-4 col-md-6" > 
         <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Año" formControlName="nombreF" > 
+        placeholder="Actores" formControlName="actoresF" > 
       </div>
       <div class="form-group pt-4 col-md-6" > 
         <input type="text" class="form-control" id ="formGroupExampleInput" 
-        placeholder="Año" formControlName="nombreF" > 
+        placeholder="Año" formControlName="anioF" > 
+      </div><div class="form-group pt-4 col-md-12" > 
+        <textarea class="form-control" placeholder="Descripcion" formControlName="descripcionF" id="floatingTextarea"></textarea>
+ 
       </div>
 
       <br/>
